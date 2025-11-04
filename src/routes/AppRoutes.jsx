@@ -1,4 +1,5 @@
-import { createBrowserRouter } from "react-router-dom";
+// router.js
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "../App";
 import DashboardPage from "../pages/DashboardPage";
 import LoginPage from "../pages/LoginPage";
@@ -10,11 +11,13 @@ import SettingsPage from "../pages/SettingsPage";
 import NotFoundPage from "../pages/NotFoundPage";
 
 export const router = createBrowserRouter([
-  { path: "/", element: <LoginPage /> },
+  { path: "/login", element: <LoginPage /> },
   {
     path: "/",
     element: <App />,
     children: [
+      { index: true, element: <Navigate to="dashboard" replace /> },
+
       { path: "dashboard", element: <DashboardPage /> },
       { path: "deposit", element: <DepositPage /> },
       { path: "withdraw", element: <WithdrawPage /> },
